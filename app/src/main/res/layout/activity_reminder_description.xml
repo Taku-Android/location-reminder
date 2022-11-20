@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <!--Data item that holds the reminder details-->
+        <variable
+            name="reminderDataItem"
+            type="com.udacity.project4.locationreminders.reminderslist.ReminderDataItem" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context=".locationreminders.ReminderDescriptionActivity">
+        <!--TODO: add the design of the reminder details-->
+
+        <TextView
+            android:id="@+id/title_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginStart="17dp"
+            android:text="@string/reminder_title"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="italic|bold"
+            android:layout_marginLeft="17dp" />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{reminderDataItem.title}"
+            android:gravity="start|center"
+            android:layout_marginStart="17dp"
+
+            android:textSize="@dimen/text_size_normal"
+            tools:text="title abc"
+            android:layout_marginLeft="17dp" />
+
+        <TextView
+            android:id="@+id/desc_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:text="@string/reminder_desc"
+            android:layout_marginStart="17dp"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="italic|bold"
+            android:layout_marginLeft="17dp" />
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:textSize="@dimen/text_size_normal"
+            android:layout_marginStart="17dp"
+            android:text="@{reminderDataItem.description}"
+            tools:text="title desciption"
+            android:layout_marginLeft="17dp" />
+
+        <TextView
+            android:id="@+id/location_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start|center"
+            android:layout_marginTop="@dimen/margin_normal"
+            android:layout_marginStart="17dp"
+            android:text="@string/reminder_location"
+            android:textSize="@dimen/text_size_large"
+            android:textStyle="italic|bold"
+            android:layout_marginLeft="17dp" />
+
+        <TextView
+            android:id="@+id/location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{reminderDataItem.location}"
+            android:gravity="start|center"
+            android:textSize="@dimen/text_size_normal"
+            android:layout_marginStart="17dp"
+            tools:text="location"
+            android:layout_marginLeft="17dp" />
+
+        <TextView
+            android:id="@+id/latlng"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_size_normal"
+            android:gravity="start|center"
+            android:layout_marginStart="17dp"
+            android:text="@{@string/lat_long_snippet(reminderDataItem.latitude,reminderDataItem.longitude)}"
+            tools:text="LAT and LNG"
+            android:layout_marginLeft="17dp" />
+
+    </LinearLayout>
+</layout>
