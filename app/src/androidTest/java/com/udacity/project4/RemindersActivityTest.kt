@@ -150,7 +150,7 @@ class RemindersActivityTest :
         Espresso.onView(ViewMatchers.withText(R.string.dropped_pin))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
 
-        onView(withText(R.string.reminder_saved))
+        Espresso.onView(withText(R.string.reminder_saved))
             .inRoot(withDecorView(`is`(getActivity(activityScenario).window.decorView)))
 
 
