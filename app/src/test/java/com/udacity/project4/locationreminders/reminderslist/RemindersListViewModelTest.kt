@@ -26,7 +26,7 @@ import org.robolectric.annotation.Config
 @RunWith(AndroidJUnit4::class)
 @ExperimentalCoroutinesApi
 @Config(sdk = intArrayOf(Build.VERSION_CODES.P))
-class RemindersListViewModelTest: AutoCloseKoinTest(){
+class RemindersListViewModelTest : AutoCloseKoinTest() {
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
@@ -41,14 +41,15 @@ class RemindersListViewModelTest: AutoCloseKoinTest(){
     var mainCoroutineRule = MainCoroutineRule()
 
     @Before
-    fun setupReminderViewModel(){
+    fun setupReminderViewModel() {
         reminderRepo = FakeDataSource()
 
-        reminderViewModel = RemindersListViewModel(ApplicationProvider.getApplicationContext(),reminderRepo)
+        reminderViewModel =
+            RemindersListViewModel(ApplicationProvider.getApplicationContext(), reminderRepo)
     }
 
     @Test
-    fun saveReminderdata() = runBlockingTest{
+    fun saveReminderdata() = runBlockingTest {
         return@runBlockingTest reminderRepo.saveReminder(
             ReminderDTO(
                 "title test ",
@@ -61,18 +62,18 @@ class RemindersListViewModelTest: AutoCloseKoinTest(){
     }
 
     @Test
-    fun test_shouldReturnError () = runBlockingTest  {
-        reminderRepo.setReturnError(true)
+    fun test_shouldReturnError() = runBlockingTest {
+        reminderRepo.setShouldReturnError(true)
         saveReminderdata()
         reminderViewModel.loadReminders()
 
         assertThat(
-            reminderViewModel.showSnackBar.value, `is`("reminders not found")
+            reminderViewModel.showSnackBar.value, `is`("Error")
         )
     }
 
     @Test
-    fun loadReminder_displayContent() = runBlockingTest{
+    fun loadReminder_displayContent() = runBlockingTest {
         mainCoroutineRule.pauseDispatcher()
         saveReminderdata()
         reminderViewModel.loadReminders()

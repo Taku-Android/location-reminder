@@ -1,5 +1,6 @@
 package com.udacity.project4
 
+
 import android.app.Activity
 import android.app.Application
 import androidx.test.core.app.ActivityScenario
@@ -37,6 +38,7 @@ import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 import org.koin.test.AutoCloseKoinTest
 import org.koin.test.get
+
 
 @RunWith(AndroidJUnit4::class)
 @LargeTest
@@ -147,7 +149,24 @@ class RemindersActivityTest :
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
         Espresso.onView(ViewMatchers.withText(R.string.dropped_pin))
             .check(ViewAssertions.matches(ViewMatchers.isDisplayed()))
+
+        onView(withText(R.string.reminder_saved))
+            .inRoot(withDecorView(`is`(getActivity(activityScenario).window.decorView)))
+
+
+
+
+
         activityScenario.close()
+    }
+
+    // get activity context
+    private fun getActivity(activityScenario: ActivityScenario<RemindersActivity>): Activity {
+        lateinit var activity: Activity
+        activityScenario.onActivity {
+            activity = it
+        }
+        return activity
     }
 
 
